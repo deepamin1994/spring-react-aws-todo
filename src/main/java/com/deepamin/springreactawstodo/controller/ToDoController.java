@@ -1,5 +1,6 @@
 package com.deepamin.springreactawstodo.controller;
 
+import com.deepamin.springreactawstodo.exception.ToDoNotFoundException;
 import com.deepamin.springreactawstodo.model.ToDo;
 import com.deepamin.springreactawstodo.model.User;
 import lombok.AllArgsConstructor;
@@ -37,13 +38,12 @@ public class ToDoController {
     }
 
     @DeleteMapping(path = "{toDoId}")
-    public void deleteToDo(@PathVariable("toDoId") Long toDoId) {
+    public void deleteToDo(@PathVariable("toDoId") Long toDoId) throws ToDoNotFoundException {
         toDoService.deleteToDoById(toDoId);
     }
-
-//    @Transactional
-//    @PutMapping(path = "{toDoId}")
-//    public void editToDo(@PathVariable("toDoId") Long toDoId) {
-//        toDoService.
+//
+//    @PutMapping
+//    public void editToDo(@RequestBody ToDo toDo) {
+//        toDoService.editToDo(toDo);
 //    }
 }

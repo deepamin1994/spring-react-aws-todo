@@ -1,7 +1,7 @@
 package com.deepamin.springreactawstodo.model;
 
 import lombok.Data;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +12,7 @@ import java.util.*;
 @Entity
 @Table(name = "users")  //Postgres has reserved keyword: user
 @Data
+@NoArgsConstructor
 public class User implements UserDetails {
     @SequenceGenerator(
             name = "user_sequence",
@@ -31,6 +32,11 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private Set<ToDo> todos = new HashSet<>();
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

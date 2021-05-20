@@ -1,5 +1,6 @@
 package com.deepamin.springreactawstodo.controller;
 
+import com.deepamin.springreactawstodo.exception.UserException;
 import com.deepamin.springreactawstodo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class UserController {
 
     //TODO sign-up in login page
     @PostMapping
-    public void addUser(@RequestBody User user) {
+    public void addUser(@RequestBody User user) throws UserException {
         userService.addUser(user);
     }
 }
